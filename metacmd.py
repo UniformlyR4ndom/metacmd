@@ -14,6 +14,7 @@ from CommandNmap import CommandNmap
 from CommandChisel import CommandChisel
 from CommandStabilizeShell import CommandStabilizeShell
 from CommandOnesixtyone import CommandOnesixtyone
+from CommandSnmpwalk import CommandSnmpwalk
 
 
 BASE_PATH = pathlib.Path(__file__).parent.resolve() 
@@ -39,6 +40,7 @@ def main():
     commands.append(CommandChisel('chisel', config, ['chisel', 'forward', 'socks']))
     commands.append(CommandStabilizeShell('stabilize-shell', config, ['stabilize-shell', 'upgrade-shell']))
     commands.append(CommandOnesixtyone('onesixtyone', config, ['onesixtyone', '161', 'snmp', 'bruteforce']))
+    commands.append(CommandSnmpwalk('snmpwalk', config, ['snmpwalk', 'snmpbulkwalk', 'snmp']))
 
     first = sys.argv[1].lower()
     if any(first == s for s in ['l', 'list', 'h', 'help']):

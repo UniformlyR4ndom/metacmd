@@ -83,6 +83,9 @@
           "seclistsPathRel": "Discovery/SNMP/snmp.txt"
         }
       ]
+    },
+    "snmpwalk": {
+      "defaultVersion": "1"
     }
   }
 }
