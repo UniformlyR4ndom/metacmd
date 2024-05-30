@@ -11,6 +11,9 @@ from CommandImpacketGetUserSPNs import CommandImpacketGetUserSPNs
 from CommandImpacketSmbserver import CommandImpacketSmbserver
 from CommandLigolong import CommandLigolong
 from CommandNmap import CommandNmap
+from CommandChisel import CommandChisel
+from CommandStabilizeShell import CommandStabilizeShell
+
 
 BASE_PATH = pathlib.Path(__file__).parent.resolve() 
 CONFIG_NAME = 'config.json'
@@ -33,6 +36,8 @@ def main():
     commands.append(CommandImpacketGetNPUsers('impacket-getnpusers', config, ['impacket-getnpusers', 'getnpusers', 'npusers', 'asreproast', 'roast']))
     commands.append(CommandImpacketGetUserSPNs('impacket-getuserspns', config, ['impacket-getuserspns', 'getuserspns', 'userspns', 'uspns', 'kerberoast', 'roast']))
     commands.append(CommandImpacketSmbserver('impacket-smbserver', config, ['impacket-smbserver', 'smbserver']))
+    commands.append(CommandChisel('chisel', config, ['chisel', 'forward', 'socks']))
+    commands.append(CommandStabilizeShell('stabilize-shell', config, ['stabilize-shell', 'upgrade-shell']))
 
     first = sys.argv[1].lower()
     if any(first == s for s in ['l', 'list', 'h', 'help']):
@@ -54,10 +59,6 @@ def main():
             print('\n'.join(cmd.genCommands(first, sys.argv[2:])))
             break
     
-
-
-
-
 
 if __name__ == "__main__":
     main()
