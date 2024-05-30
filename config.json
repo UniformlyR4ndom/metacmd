@@ -12,13 +12,15 @@
     "password": "password",
     "ntHash": "00000000000000000000000000000000"
   },
+  "wordlists": {
+    "seclistsBase": "/home/random/shared_with_host/SecLists"
+  },
   "commands": {
     "chisel": {
       "serverPort": 9999,
       "socksPort": 8000
     },
     "ffuf": {
-      "seclistsBase": "/home/random/shared_with_host/SecLists",
       "defaultLists": [
         {
           "pathAbs": "/home/random/shared_with_host/custom-tools/betterfuzzing/direnum/dirlist-good.txt",
@@ -74,6 +76,13 @@
           "--min-rate 400"
         ]
       }
+    },
+    "onesixtyone": {
+      "defaultLists": [
+        {
+          "seclistsPathRel": "Discovery/SNMP/snmp.txt"
+        }
+      ]
     }
   }
 }

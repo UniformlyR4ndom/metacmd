@@ -13,6 +13,7 @@ from CommandLigolong import CommandLigolong
 from CommandNmap import CommandNmap
 from CommandChisel import CommandChisel
 from CommandStabilizeShell import CommandStabilizeShell
+from CommandOnesixtyone import CommandOnesixtyone
 
 
 BASE_PATH = pathlib.Path(__file__).parent.resolve() 
@@ -27,7 +28,6 @@ def gencmdImpacketSmbserver() -> list[str]:
 def main():
     configPath = os.path.join(BASE_PATH, CONFIG_NAME)
     config = readConfig(configPath)
-    #print(config)
 
     commands : list[Command] = []
     commands.append(CommandFfuf('ffuf', config, ['ffuf', 'fuzz', 'web', 'enum', 'directory', 'brute']))
@@ -38,6 +38,7 @@ def main():
     commands.append(CommandImpacketSmbserver('impacket-smbserver', config, ['impacket-smbserver', 'smbserver']))
     commands.append(CommandChisel('chisel', config, ['chisel', 'forward', 'socks']))
     commands.append(CommandStabilizeShell('stabilize-shell', config, ['stabilize-shell', 'upgrade-shell']))
+    commands.append(CommandOnesixtyone('onesixtyone', config, ['onesixtyone', '161', 'snmp', 'bruteforce']))
 
     first = sys.argv[1].lower()
     if any(first == s for s in ['l', 'list', 'h', 'help']):

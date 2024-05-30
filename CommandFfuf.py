@@ -7,7 +7,7 @@ class CommandFfuf(Command):
     def __init__(self, name: str, config: dict[str, str], tags : list[str]):
         super().__init__(name, config, tags)
         ffufConfig = config['commands']['ffuf']
-        seclistBase = ffufConfig['seclistsBase']
+        seclistBase = config['wordlists']['seclistsBase']
         defaultLists = []
         if 'defaultLists' in ffufConfig:
             for l in ffufConfig['defaultLists']:
