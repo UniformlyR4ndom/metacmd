@@ -8,13 +8,18 @@ class CommandLigolong(Command):
     def __init__(self, name: str, config: dict[str, str], tags : list[str]):
         super().__init__(name, config, tags)
         configDefaults = config['defaults']
-        self.defaultProxyEndpoint = f'{configDefaults["lhost"]}:{configDefaults["lport"]}'
+        configLigolong = config['commands']['ligolong']
+        lhost = configLigolong['lhost'] if 'lhost' in configLigolong else configDefaults['lhost']
+        lport = configLigolong["serverPort"]
+
+        self.defaultProxyEndpoint = f'{lhost}:{lport}'
+        self.laddr = f'0.0.0.0:{lport}'
  
 
     def matchesTrigger(self, trigger : str) -> bool:
         triggerLower = trigger.lower()
-        ffufTriggers = ['ligolo', 'ligolong']
-        return any(word in triggerLower for word in ffufTriggers)
+        triggers = ['ligolo', 'ligolong']
+        return any(word in triggerLower for word in triggers)
 
 
     def getHelp(self) -> str:
@@ -33,7 +38,7 @@ class CommandLigolong(Command):
         output.append(f'sudo ip link set {interface} up')
         output.append('')
         output.append('# start server')
-        output.append('ligolong-proxy -selfcert')
+        output.append(f'ligolong-proxy -laddr {self.laddr} -selfcert')
         output.append('')
         output.append('# connect client')
         output.append('## from Windows victim')

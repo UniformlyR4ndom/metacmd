@@ -16,8 +16,8 @@ class CommandImpacketGetNPUsers(Command):
 
     def matchesTrigger(self, trigger : str) -> bool:
         triggerLower = trigger.lower()
-        nmapTriggers = ['impacket-getnpusers', 'getnpusers', 'npusers', 'asreproast']
-        return any(word in triggerLower for word in nmapTriggers)
+        triggers = ['impacket-getnpusers', 'getnpusers', 'npusers', 'asreproast']
+        return any(word in triggerLower for word in triggers)
 
 
     def getHelp(self) -> str:

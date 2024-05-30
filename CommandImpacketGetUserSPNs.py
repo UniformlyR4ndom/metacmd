@@ -1,5 +1,4 @@
 from Command import Command
-from Util import getarg
 
 class CommandImpacketGetUserSPNs(Command):
     def __init__(self, name: str, config: dict[str, str], tags : list[str]):
@@ -16,8 +15,8 @@ class CommandImpacketGetUserSPNs(Command):
 
     def matchesTrigger(self, trigger : str) -> bool:
         triggerLower = trigger.lower()
-        nmapTriggers = ['impacket-getuserspns', 'getuserspns', 'userspns', 'uspns', 'kerberoast']
-        return any(word in triggerLower for word in nmapTriggers)
+        triggers = ['impacket-getuserspns', 'getuserspns', 'userspns', 'uspns', 'kerberoast']
+        return any(word in triggerLower for word in triggers)
 
 
     def getHelp(self) -> str:

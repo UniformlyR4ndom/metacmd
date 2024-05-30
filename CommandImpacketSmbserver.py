@@ -13,8 +13,8 @@ class CommandImpacketSmbserver(Command):
 
     def matchesTrigger(self, trigger : str) -> bool:
         triggerLower = trigger.lower()
-        nmapTriggers = ['impacket-smbserver', 'smbserver']
-        return any(word in triggerLower for word in nmapTriggers)
+        triggers = ['impacket-smbserver', 'smbserver']
+        return any(word in triggerLower for word in triggers)
 
 
     def getHelp(self) -> str:

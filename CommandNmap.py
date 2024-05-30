@@ -15,8 +15,8 @@ class CommandNmap(Command):
 
     def matchesTrigger(self, trigger : str) -> bool:
         triggerLower = trigger.lower()
-        nmapTriggers = ['nmap', 'portscan']
-        return any(word in triggerLower for word in nmapTriggers)
+        triggers = ['nmap', 'portscan']
+        return any(word in triggerLower for word in triggers)
 
 
     def getHelp(self) -> str:
