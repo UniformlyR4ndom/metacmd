@@ -42,8 +42,10 @@ def main():
 
     first = sys.argv[1].lower()
     if any(first == s for s in ['l', 'list', 'h', 'help']):
+        lines = []
         for cmd in commands:
-            print(cmd.getHelp())
+            lines.append(cmd.getHelp())
+        print('\n'.join(sorted(lines)))
         return 
 
     if any(first == s for s in ['s', 'search']):
