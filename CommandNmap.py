@@ -1,3 +1,5 @@
+import os
+
 from Command import Command
 from Util import getarg
 
@@ -38,6 +40,7 @@ class CommandNmap(Command):
             return [self.getHelp()]
 
         target = args[0]
+        targetPrefix = '-iL ' if os.path.isfile(target) else ''
 
         portspecTcp = portspecUdp = getarg(args, 1)
         portspecTcp = f'-p {portspecTcp}' if portspecTcp else self.defaultPortSpecTcp
@@ -53,10 +56,10 @@ class CommandNmap(Command):
 
         commands = []
         commands.append('# TCP')
-        commands.append(f'sudo nmap {self.defaultScanTcp}{flagsTcp} {portspecTcp} -oA tcp-{porttagTcp}-{targetTag} {target}')
+        commands.append(f'sudo nmap {self.defaultScanTcp}{flagsTcp} {portspecTcp} -oA tcp-{porttagTcp}-{targetTag} {targetPrefix}{target}')
         commands.append('')
         commands.append('# UDP')
-        commands.append(f'sudo nmap {self.defaultScanUdp}{flagsUdp} {portspecUdp} -oA udp-{porttagUdp}-{targetTag} {target}')
+        commands.append(f'sudo nmap {self.defaultScanUdp}{flagsUdp} {portspecUdp} -oA udp-{porttagUdp}-{targetTag} {targetPrefix}{target}')
         commands.append('')
         commands.append('# Post-processing')
         commands.append('## Get all open ports')
