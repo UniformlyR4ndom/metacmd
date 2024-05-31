@@ -56,7 +56,7 @@ class CommandHydra(Command):
             pwSpec = args[2]
             port = (' -s ' + getarg(args, 3)) if getarg(args, 3) else ' -s 161'
             commands = []
-            commands.append('# Bruteforce community strings')
+            commands.append('# Bruteforce community strings (consider using onesixtyone, it is faster)')
             commands.append(f'hydra -P {pwSpec}{port} {host} snmp')
             return commands
 
