@@ -15,6 +15,7 @@ from CommandChisel import CommandChisel
 from CommandStabilizeShell import CommandStabilizeShell
 from CommandOnesixtyone import CommandOnesixtyone
 from CommandSnmpwalk import CommandSnmpwalk
+from CommandHydra import CommandHydra
 
 
 BASE_PATH = pathlib.Path(__file__).parent.resolve() 
@@ -41,6 +42,7 @@ def main():
     commands.append(CommandStabilizeShell('stabilize-shell', config, ['stabilize-shell', 'upgrade-shell']))
     commands.append(CommandOnesixtyone('onesixtyone', config, ['onesixtyone', '161', 'snmp', 'bruteforce']))
     commands.append(CommandSnmpwalk('snmpwalk', config, ['snmpwalk', 'snmpbulkwalk', 'snmp']))
+    commands.append(CommandHydra('hydra', config, ['hydra', 'bruteforce']))
 
     first = sys.argv[1].lower()
     if any(first == s for s in ['l', 'list', 'h', 'help']):
