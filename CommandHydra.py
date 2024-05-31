@@ -29,10 +29,10 @@ class CommandHydra(Command):
         def _genCommandGeneric(host, proto, userSpec, pwSpec, port, threads=''):
             commands = []
             commands.append('# Attack single user')
-            commands.append(f'hydra -l {userSpec} -P {pwSpec} -s {port} {threads}{host} {proto}')
+            commands.append(f"hydra -l '{userSpec}' -P {pwSpec} -s {port} {threads}{host} {proto}")
             commands.append('')
             commands.append('# Spray single password')
-            commands.append(f'hydra -L {userSpec} -p {pwSpec} -s {port} {threads}{host} {proto}')
+            commands.append(f"hydra -L {userSpec} -p '{pwSpec}' -s {port} {threads}{host} {proto}")
             commands.append('')
             commands.append('# Attack multiple users')
             commands.append(f'hydra -L {userSpec} -P {pwSpec} -s {port} -u {threads}{host} {proto}')
@@ -56,7 +56,7 @@ class CommandHydra(Command):
             pwSpec = args[2]
             port = (' -s ' + getarg(args, 3)) if getarg(args, 3) else ' -s 161'
             commands = []
-            commands.append('# Bruteforce community strings (consider using onesixtyone, it is faster)')
+            commands.append('# Bruteforce community strings ()')
             commands.append(f'hydra -P {pwSpec}{port} {host} snmp')
             return commands
 
