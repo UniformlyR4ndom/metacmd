@@ -25,14 +25,14 @@ class CommandSnmpwalk(Command):
         targetHost = args[0]
         communityString = args[1]
         version = getarg(args, 2) or self.defaultVersion
-        logfile = f'smnpinfo-v{version}-{targetHost}.log'
+        logfile = f'snmpinfo-v{version}-{targetHost}.log'
 
         commands = []
-        commands.append('# Using snmpwalk (potentially slow)')
-        commands.append(f'snmpwalk -c {communityString} -v{version} -Oa {targetHost} | tee {logfile}')
+        commands.append('# Using snmpwalk (potentially slow). Mind the dot!')
+        commands.append(f'snmpwalk -c {communityString} -v{version} -Oa {targetHost} . | tee {logfile}')
         commands.append('')
-        commands.append('# Using snmpbulkwalk (can be faster)')
-        commands.append(f'snmpbulkwalk -c {communityString} -v{version} -Oa {targetHost} | tee {logfile}')
+        commands.append('# Using snmpbulkwalk (can be faster). Mid the dot!')
+        commands.append(f'snmpbulkwalk -c {communityString} -v{version} -Oa {targetHost} . | tee {logfile}')
         commands.append('')
         commands.append('# Misc')
         commands.append('## SNMP versions')
