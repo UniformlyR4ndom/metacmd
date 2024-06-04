@@ -1,4 +1,4 @@
-from Command import Command
+from command.Command import Command
 import os
 
 class CommandOnesixtyone(Command):

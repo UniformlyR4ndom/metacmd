@@ -4,19 +4,19 @@ import sys
 import pathlib
 
 from Util import readConfig
-from Command import Command
-from CommandFfuf import CommandFfuf
-from CommandImpacketGetNPUsers import CommandImpacketGetNPUsers
-from CommandImpacketGetUserSPNs import CommandImpacketGetUserSPNs
-from CommandImpacketSmbserver import CommandImpacketSmbserver
-from CommandLigolong import CommandLigolong
-from CommandNmap import CommandNmap
-from CommandChisel import CommandChisel
-from CommandStabilizeShell import CommandStabilizeShell
-from CommandOnesixtyone import CommandOnesixtyone
-from CommandSnmpwalk import CommandSnmpwalk
-from CommandHydra import CommandHydra
-from CommandNxcMssql import CommandNxcMssql
+from command.Command import Command
+from command.CommandFfuf import CommandFfuf
+from command.CommandImpacketGetNPUsers import CommandImpacketGetNPUsers
+from command.CommandImpacketGetUserSPNs import CommandImpacketGetUserSPNs
+from command.CommandImpacketSmbserver import CommandImpacketSmbserver
+from command.CommandLigolong import CommandLigolong
+from command.CommandNmap import CommandNmap
+from command.CommandChisel import CommandChisel
+from command.CommandStabilizeShell import CommandStabilizeShell
+from command.CommandOnesixtyone import CommandOnesixtyone
+from command.CommandSnmpwalk import CommandSnmpwalk
+from command.CommandHydra import CommandHydra
+from command.CommandNxcMssql import CommandNxcMssql
 
 
 BASE_PATH = pathlib.Path(__file__).parent.resolve() 

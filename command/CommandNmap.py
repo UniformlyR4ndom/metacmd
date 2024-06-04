@@ -1,6 +1,6 @@
 import os
 
-from Command import Command
+from command.Command import Command
 from Util import getarg
 
 class CommandNmap(Command):

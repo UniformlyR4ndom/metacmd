@@ -1,4 +1,4 @@
-from Command import Command
+from command.Command import Command
 
 class CommandImpacketGetNPUsers(Command):
     def __init__(self, name: str, config: dict[str, str], tags : list[str]):
