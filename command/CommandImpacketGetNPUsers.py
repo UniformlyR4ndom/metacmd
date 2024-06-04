@@ -11,6 +11,7 @@ class CommandImpacketGetNPUsers(Command):
         self.defaultUsername = conf['username']
         self.defaultPassword = conf['password']
         self.defaultNtHash = conf['ntHash']
+        self.defaultWordlist = config['wordlists']['rockyou']
 
 
     def matchesTrigger(self, trigger : str) -> bool:
@@ -52,6 +53,6 @@ class CommandImpacketGetNPUsers(Command):
         commands.append(f"impacket-GetNPUsers {dom}/{user} -hashes :{ntHash} -dc-ip {dcIp} {req}")
         commands.append('')
         commands.append('# Crack')
-        commands.append(f'hashcat -m 18200 {outputfile} /usr/share/wordlists/rockyou.txt -O')
+        commands.append(f'hashcat -m 18200 {outputfile} {self.defaultWordlist} -O')
 
         return commands

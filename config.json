@@ -13,7 +13,8 @@
     "ntHash": "00000000000000000000000000000000"
   },
   "wordlists": {
-    "seclistsBase": "/home/random/shared_with_host/SecLists"
+    "seclistsBase": "/home/random/shared_with_host/SecLists",
+    "rockyou": "/usr/share/wordlists/rockyou.txt"
   },
   "commands": {
     "chisel": {
