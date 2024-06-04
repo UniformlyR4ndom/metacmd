@@ -7,7 +7,7 @@ class CommandStabilizeShell(Command):
 
     def matchesTrigger(self, trigger : str) -> bool:
         triggerLower = trigger.lower()
-        triggers = ['stabilize-shell', 'ss', 'upgrage-shell', 'us']
+        triggers = ['stabilize-shell', 'sshell', 'upgrage-shell', 'ushell']
         return any(word in triggerLower for word in triggers)
 
 
