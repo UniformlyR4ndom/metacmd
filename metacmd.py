@@ -15,6 +15,7 @@ from command.CommandJohn import CommandJohn
 from command.CommandLigolong import CommandLigolong
 from command.CommandNmap import CommandNmap
 from command.CommandNxcMssql import CommandNxcMssql
+from command.CommandNxcSmb import CommandNxcSmb
 from command.CommandOnesixtyone import CommandOnesixtyone
 from command.CommandStabilizeShell import CommandStabilizeShell
 from command.CommandSnmpwalk import CommandSnmpwalk
@@ -43,6 +44,7 @@ def main():
     commands.append(CommandLigolong('ligolong', config, ['ligolo', 'pivot']))
     commands.append(CommandNmap('nmap', config, ['nmap', 'portscan']))
     commands.append(CommandNxcMssql('nxc-mssql', config, ['nxc', 'netexec', 'nxc-mssql', 'cme', 'crackmapexec', 'cme-mssql']))
+    commands.append(CommandNxcSmb('nxc-smb', config, ['nxc', 'netexec', 'nxc-smb', 'cme', 'crackmapexec', 'cme-smb']))
     commands.append(CommandOnesixtyone('onesixtyone', config, ['onesixtyone', '161', 'snmp', 'bruteforce']))
     commands.append(CommandSnmpwalk('snmpwalk', config, ['snmpwalk', 'snmpbulkwalk', 'snmp']))
     commands.append(CommandStabilizeShell('stabilize-shell', config, ['stabilize-shell', 'upgrade-shell']))

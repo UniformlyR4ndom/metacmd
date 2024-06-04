@@ -13,7 +13,7 @@ class CommandNxcMssql(Command):
 
 
     def getHelp(self) -> str:
-        return 'nxc-mssql <target-spec> <user-spec> <auth-spec>'
+        return 'nxc-mssql <target-spec> [<user-spec>] [<auth-spec>]'
 
 
     def genCommands(self, trigger: str, args: list[str]) -> list[str]:
