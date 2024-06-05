@@ -66,11 +66,17 @@ def main():
             if any((searchterm in tag) or (tag in searchterm) for tag in cmd.tags):
                 print(cmd.getHelp())
 
-    for cmd in commands:
-        if cmd.matchesTrigger(first):
-            print('\n'.join(cmd.genCommands(first, sys.argv[2:])))
-            break
-    
+    matchingCommands = [cmd for cmd in commands if cmd.matchesTrigger(first)]
+    if not matchingCommands:
+        print(f'{first} matches no known command. List supported commands with python3 {sys.argv[0]} l')
+        return
+
+    if len(matchingCommands) > 1:
+        print(f'{first} matches mulitple commands. Please be more specific.')
+        print('\n'.join([cmd.getHelp() for cmd in matchingCommands]))
+        return
+
+    print('\n'.join(matchingCommands[0].genCommands(first, sys.argv[2:])))
 
 if __name__ == "__main__":
     main()

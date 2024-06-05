@@ -53,5 +53,5 @@ class CommandLigolong(Command):
         output.append(f'start --tun {interface}')
         output.append('')
         output.append('# set route')
-        output.append(f'sudo ip route add <tartet-net> dev {interface}')
+        output.append(f'sudo ip route add <target-net> dev {interface}')
         return output
