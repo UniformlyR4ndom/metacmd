@@ -10,6 +10,7 @@ from command.CommandFfuf import CommandFfuf
 from command.CommandHydra import CommandHydra
 from command.CommandImpacketGetNPUsers import CommandImpacketGetNPUsers
 from command.CommandImpacketGetUserSPNs import CommandImpacketGetUserSPNs
+from command.CommandImpacketLookupsid import CommandImpacketLookupsid
 from command.CommandImpacketSmbserver import CommandImpacketSmbserver
 from command.CommandJohn import CommandJohn
 from command.CommandLigolong import CommandLigolong
@@ -39,6 +40,7 @@ def main():
     commands.append(CommandHydra('hydra', config, ['hydra', 'bruteforce']))
     commands.append(CommandImpacketGetNPUsers('impacket-getnpusers', config, ['impacket-getnpusers', 'getnpusers', 'npusers', 'asreproast', 'roast']))
     commands.append(CommandImpacketGetUserSPNs('impacket-getuserspns', config, ['impacket-getuserspns', 'getuserspns', 'userspns', 'uspns', 'kerberoast', 'roast']))
+    commands.append(CommandImpacketLookupsid('impacket-lookupsid', config, ['impacket-lookupsid', 'lookupsid', 'sid']))
     commands.append(CommandImpacketSmbserver('impacket-smbserver', config, ['impacket-smbserver', 'smbserver']))
     commands.append(CommandJohn('john', config, ['john', 'crack', 'pass', 'brute']))
     commands.append(CommandLigolong('ligolong', config, ['ligolo', 'pivot']))
@@ -65,6 +67,7 @@ def main():
         for cmd in commands:
             if any((searchterm in tag) or (tag in searchterm) for tag in cmd.tags):
                 print(cmd.getHelp())
+        return
 
     matchingCommands = [cmd for cmd in commands if cmd.matchesTrigger(first)]
     if not matchingCommands:
@@ -72,7 +75,7 @@ def main():
         return
 
     if len(matchingCommands) > 1:
-        print(f'{first} matches mulitple commands. Please be more specific.')
+        print(f'{first} matches multiple commands. Please be more specific.')
         print('\n'.join([cmd.getHelp() for cmd in matchingCommands]))
         return
 
