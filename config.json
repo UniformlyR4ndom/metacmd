@@ -69,6 +69,9 @@
         "defaultPortSpec": "--top-ports 100",
         "defaultScan": "-sUV",
         "defaultFlags": [
+          "-v",
+          "-Pn",
+          "-T4",
           "--max-retries 2",
           "--max-scan-delay 20ms",
           "--max-rtt-timeout 2s",

