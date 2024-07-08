@@ -12,6 +12,7 @@ from command.CommandImpacketGetNPUsers import CommandImpacketGetNPUsers
 from command.CommandImpacketGetUserSPNs import CommandImpacketGetUserSPNs
 from command.CommandImpacketLookupsid import CommandImpacketLookupsid
 from command.CommandImpacketSmbserver import CommandImpacketSmbserver
+from command.CommandIptables import CommandIptables
 from command.CommandJohn import CommandJohn
 from command.CommandLigolong import CommandLigolong
 from command.CommandNmap import CommandNmap
@@ -38,6 +39,8 @@ def main():
     commands.append(CommandChisel('chisel', config, ['chisel', 'forward', 'socks']))
     commands.append(CommandFfuf('ffuf', config, ['ffuf', 'fuzz', 'web', 'enum', 'directory', 'brute']))
     commands.append(CommandHydra('hydra', config, ['hydra', 'bruteforce']))
+    commands.append(CommandIptables('iptables', config, ['iptables', 'firewall']))
+    commands.append(CommandImpacketGetNPUsers('iptables', config, ['iptables', 'firewall']))
     commands.append(CommandImpacketGetNPUsers('impacket-getnpusers', config, ['impacket-getnpusers', 'getnpusers', 'npusers', 'asreproast', 'roast']))
     commands.append(CommandImpacketGetUserSPNs('impacket-getuserspns', config, ['impacket-getuserspns', 'getuserspns', 'userspns', 'uspns', 'kerberoast', 'roast']))
     commands.append(CommandImpacketLookupsid('impacket-lookupsid', config, ['impacket-lookupsid', 'lookupsid', 'sid']))
