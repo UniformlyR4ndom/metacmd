@@ -21,7 +21,7 @@ class CommandIptables(Command):
         exampleInterface = 'eth0'
         exampleRedirectDstOrig = '10.10.4.8'
         exampleRedirectDstPortOrig = '443'
-        exampleRedirectDstMod = '102.168.5.9'
+        exampleRedirectDstMod = '192.168.5.9'
         exampleRedirectDstPortMod = '8443'
 
         commands = []
