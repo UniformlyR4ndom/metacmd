@@ -5,12 +5,14 @@ import pathlib
 
 from Util import readConfig
 from command.Command import Command
+from command.CommandCertipy import CommandCertipy
 from command.CommandChisel import CommandChisel
 from command.CommandFfuf import CommandFfuf
 from command.CommandHydra import CommandHydra
 from command.CommandImpacketGetNPUsers import CommandImpacketGetNPUsers
 from command.CommandImpacketGetUserSPNs import CommandImpacketGetUserSPNs
 from command.CommandImpacketLookupsid import CommandImpacketLookupsid
+from command.CommandImpacketNtlmrelayx import CommandImpacketNtlmrelayx
 from command.CommandImpacketSmbserver import CommandImpacketSmbserver
 from command.CommandIptables import CommandIptables
 from command.CommandJohn import CommandJohn
@@ -36,6 +38,7 @@ def main():
     config = readConfig(configPath)
 
     commands : list[Command] = []
+    commands.append(CommandCertipy('certipy', config, ['certipy', 'adcs', 'cert']))
     commands.append(CommandChisel('chisel', config, ['chisel', 'forward', 'socks']))
     commands.append(CommandFfuf('ffuf', config, ['ffuf', 'fuzz', 'web', 'enum', 'directory', 'brute']))
     commands.append(CommandHydra('hydra', config, ['hydra', 'bruteforce']))
@@ -44,6 +47,7 @@ def main():
     commands.append(CommandImpacketGetNPUsers('impacket-getnpusers', config, ['impacket-getnpusers', 'getnpusers', 'npusers', 'asreproast', 'roast']))
     commands.append(CommandImpacketGetUserSPNs('impacket-getuserspns', config, ['impacket-getuserspns', 'getuserspns', 'userspns', 'uspns', 'kerberoast', 'roast']))
     commands.append(CommandImpacketLookupsid('impacket-lookupsid', config, ['impacket-lookupsid', 'lookupsid', 'sid']))
+    commands.append(CommandImpacketNtlmrelayx('impacket-ntlmrelayx', config, ['impacket-ntlmrelayx', 'ntlmrelay', 'relay']))
     commands.append(CommandImpacketSmbserver('impacket-smbserver', config, ['impacket-smbserver', 'smbserver']))
     commands.append(CommandJohn('john', config, ['john', 'crack', 'pass', 'brute']))
     commands.append(CommandLigolong('ligolong', config, ['ligolo', 'pivot']))

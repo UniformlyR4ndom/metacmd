@@ -13,7 +13,7 @@ class CommandHydra(Command):
 
 
     def getHelp(self) -> str:
-        return 'hydra <help|ftp|rdp|snmp|ssh|telnet> <args>'
+        return 'hydra <help | ftp | rdp | snmp | ssh | telnet> <args>'
 
 
     def genCommands(self, trigger: str, args: list[str]) -> list[str]:
