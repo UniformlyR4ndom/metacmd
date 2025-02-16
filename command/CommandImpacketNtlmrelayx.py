@@ -1,5 +1,5 @@
 from command.Command import Command
-from Util import getarg, isNtHash
+from Util import getarg
 
 class CommandImpacketNtlmrelayx(Command):
     def __init__(self, name: str, config: dict[str, str], tags : list[str]):
@@ -13,7 +13,7 @@ class CommandImpacketNtlmrelayx(Command):
         return any(word in triggerLower for word in triggers)
 
     def getHelp(self) -> str:
-        return "return impacket-ntlmrelayx <args>"
+        return "impacket-ntlmrelayx <args>"
 
     def genCommands(self, trigger: str, args: list[str]) -> list[str]:
         dcip = getarg(args, 0) or self.defaultDcIp

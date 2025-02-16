@@ -43,7 +43,6 @@ def main():
     commands.append(CommandFfuf('ffuf', config, ['ffuf', 'fuzz', 'web', 'enum', 'directory', 'brute']))
     commands.append(CommandHydra('hydra', config, ['hydra', 'bruteforce']))
     commands.append(CommandIptables('iptables', config, ['iptables', 'firewall']))
-    commands.append(CommandImpacketGetNPUsers('iptables', config, ['iptables', 'firewall']))
     commands.append(CommandImpacketGetNPUsers('impacket-getnpusers', config, ['impacket-getnpusers', 'getnpusers', 'npusers', 'asreproast', 'roast']))
     commands.append(CommandImpacketGetUserSPNs('impacket-getuserspns', config, ['impacket-getuserspns', 'getuserspns', 'userspns', 'uspns', 'kerberoast', 'roast']))
     commands.append(CommandImpacketLookupsid('impacket-lookupsid', config, ['impacket-lookupsid', 'lookupsid', 'sid']))
